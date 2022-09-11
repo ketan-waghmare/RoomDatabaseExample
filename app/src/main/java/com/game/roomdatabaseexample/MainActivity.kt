@@ -17,13 +17,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        database = Room.databaseBuilder(
-            applicationContext, ContactDatabase::class.java,
-            "contactDB"
-        ).build()
+        database = ContactDatabase.getDatabase(this)
 
         GlobalScope.launch {
-            database.contactDao().insertContact(Contact(0, "Ketan", "9545442913"))
+            database.contactDao().insertContact(Contact(0, "Ketan", "9545442913",Date()))
         }
     }
 
